@@ -47,7 +47,6 @@ public class PlayerController : MonoBehaviour
         if (!cS.usingFreelook)
         {
             if(Input.GetKey(KeyCode.LeftShift))
-                
                 controller.Move(move * (speed + 4) * Time.deltaTime);
             else
                 controller.Move(move * speed * Time.deltaTime);
