@@ -5,8 +5,10 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public GameObject projectilePrefab2;
     public Transform firePoint;
     Camera cam;
+    bool isSpecialWeapon = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,7 +20,17 @@ public class PlayerShooting : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            Shoot();
+            if(isSpecialWeapon)
+            {
+                Shoot2();
+            }
+            else
+                Shoot();
+        }
+
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            isSpecialWeapon = !isSpecialWeapon;
         }
     }
 
@@ -30,5 +42,14 @@ public class PlayerShooting : MonoBehaviour
         Vector3 direction = (targetPoint - firePoint.position).normalized;
 
         GameObject proj = Instantiate(projectilePrefab, firePoint.position, Quaternion.LookRotation(direction));
+    }
+    void Shoot2()
+    {
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
+        Vector3 targetPoint;
+        targetPoint = ray.GetPoint(50f);
+        Vector3 direction = (targetPoint - firePoint.position).normalized;
+
+        GameObject proj = Instantiate(projectilePrefab2, firePoint.position, Quaternion.LookRotation(direction));
     }
 }

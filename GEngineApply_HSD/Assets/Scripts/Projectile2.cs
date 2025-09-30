@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class Projectile2 : MonoBehaviour
 {
-    public int damage = 1;
-    public float speed = 8f;
+    public int damage = 3;
+    public float speed = 6f;
     public float lifetime = 3f;
 
     void Start()
